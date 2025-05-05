@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.example.petstoregrpcjsonexample.proto";
+option java_outer_classname = "PetstoreProto";
+
+package petstore;
+
+// Service definition for Petstore operations
+service PetService {
+  // Adds a new pet to the store
+  rpc AddPet (AddPetRequest) returns (Pet);
+  // Retrieves a pet by its ID
+  rpc GetPetById (GetPetByIdRequest) returns (Pet);
+}
+
+// Represents a pet in the store
+message Pet {
+  int64 id = 1;
+  string name = 2;
+  string status = 3; // e.g., "available", "pending", "sold"
+}
+
+// Request message for adding a pet
+message AddPetRequest {
+  string name = 1;
+  string status = 2;
+}
+
+// Request message for getting a pet by ID
+message GetPetByIdRequest {
+  int64 petId = 1;
+}
